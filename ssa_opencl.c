@@ -162,7 +162,7 @@ int main(int argc, char** argv)
 
 	cl_device_id devices[100];
 	cl_uint devices_n = 0;
-	CL_CHECK(clGetDeviceIDs(platforms[0], CL_DEVICE_TYPE_GPU, 100, devices, &devices_n));
+	CL_CHECK(clGetDeviceIDs(platforms[0], CL_DEVICE_TYPE_CPU, 100, devices, &devices_n));
 
 #if 0
 	printf("=== %d OpenCL device(s) found on platform:\n", devices_n);
@@ -195,7 +195,8 @@ int main(int argc, char** argv)
     // Connect to a compute device
     //
     device_id = devices[0];
-    CL_CHECK(clGetDeviceIDs(platforms[0], CL_DEVICE_TYPE_GPU, 1, &device_id, NULL));
+    // pilsung - this call is redundant - clGetDeviceIDs was called above
+    CL_CHECK(clGetDeviceIDs(platforms[0], CL_DEVICE_TYPE_CPU, 1, &device_id, NULL));
 
     // Create a compute context 
     //
